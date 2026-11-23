@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131c">
+  <meta name="description" content="Biur player activity — a live view of players joining your community.">
+  <title>Biur Activity — Player joins</title>
+  <style>
+    :root{color-scheme:dark;--bg:#10131c;--panel:#171b27;--panel2:#1d2230;--line:#2a3040;--muted:#929bad;--text:#eef1f7;--accent:#a88bff;--green:#57d6a0;--blue:#77b7ff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% -15%,#322653 0,transparent 35%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}a{color:inherit;text-decoration:none}.shell{max-width:1280px;margin:auto;padding:0 28px}.topbar{height:76px;border-bottom:1px solid #ffffff12;background:#10131ce8;display:flex;align-items:center;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.topinner{display:flex;align-items:center;justify-content:space-between;width:100%}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;letter-spacing:-.4px}.mark{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,#b99eff,#7551e8);color:#fff;font-size:18px;box-shadow:0 5px 20px #9b76ff38}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;line-height:1.1;margin-top:3px}.links{display:flex;gap:26px;color:#aab1c1;font-weight:600}.links a{transition:color .15s}.links a:hover,.links a.active{color:var(--text)}.right{display:flex;align-items:center;gap:14px}.live{display:flex;align-items:center;gap:8px;color:#c5ccda;font-size:12px;font-weight:700}.dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px #57d6a088;animation:pulse 1.8s infinite}@keyframes pulse{50%{box-shadow:0 0 4px #57d6a055}}.avatar{width:34px;height:34px;border-radius:50%;background:#272c3c;color:#c0aaff;display:grid;place-items:center;font-weight:800}.hero{padding:42px 0 25px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;color:var(--accent);font-weight:800}.hero h1{font-size:30px;line-height:1.2;letter-spacing:-1px;margin:8px 0}.hero p{margin:0;color:var(--muted)}.updated{color:var(--muted);font-size:12px;display:flex;align-items:center;gap:7px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:8px 0 24px}.card{background:linear-gradient(140deg,#1b2030,#171b27);border:1px solid var(--line);border-radius:13px;padding:18px 20px;min-height:122px}.cardhead{display:flex;justify-content:space-between;align-items:center;color:#a7afc0;font-size:12px;font-weight:650}.cardicon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#a88bff18;color:var(--accent);font-size:15px}.value{font-size:30px;font-weight:800;letter-spacing:-1px;margin-top:8px}.sub{color:#7e899d;font-size:11px;margin-top:1px}.content{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(290px,.85fr);gap:16px;margin-bottom:36px}.box{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden}.boxtop{padding:17px 19px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.boxtitle{font-weight:750;font-size:14px}.boxdesc{font-size:11px;color:var(--muted);margin-top:2px}.count{border:1px solid #ffffff16;background:#ffffff08;padding:3px 8px;border-radius:20px;color:#bbc3d2;font-size:11px}.searchwrap{padding:13px 18px;border-bottom:1px solid var(--line)}.search{width:100%;border:1px solid #303747;background:#11151f;color:var(--text);padding:10px 12px;border-radius:8px;outline:none;font:inherit;font-size:12px}.search:focus{border-color:#9c80ee}.tablehead,.playerrow{display:grid;grid-template-columns:minmax(145px,1.1fr) minmax(110px,.9fr) minmax(90px,.7fr);gap:12px;align-items:center;padding:11px 19px}.tablehead{color:#737f94;text-transform:uppercase;letter-spacing:.8px;font-size:9px;font-weight:800}.playerrow{border-top:1px solid #ffffff09;min-height:60px}.player{display:flex;align-items:center;gap:10px;min-width:0}.portrait{width:32px;height:32px;border-radius:9px;background:linear-gradient(145deg,#38334b,#262b3a);display:grid;place-items:center;color:#c5afff;font-weight:800;flex-shrink:0}.pname{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.uid{font-size:10px;color:#808b9d}.game{font-size:11px;color:#b1bac9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.joined{font-size:11px;color:#a2adbd}.status{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-size:10px;font-weight:700}.status .dot{width:6px;height:6px;animation:none}.feed{padding:4px 17px 10px}.feeditem{display:flex;gap:11px;padding:13px 2px;border-bottom:1px solid #ffffff0a}.feeditem:last-child{border:0}.feedicon{width:28px;height:28px;border-radius:8px;background:#57d6a018;display:grid;place-items:center;color:var(--green);flex-shrink:0}.feedcopy{min-width:0;flex:1}.feedcopy strong{font-size:11px}.feedcopy p{font-size:10px;color:var(--muted);margin:2px 0 0}.feedtime{font-size:10px;color:#7e899d;white-space:nowrap}.empty{padding:38px 20px;text-align:center;color:var(--muted);font-size:12px}.emptyicon{font-size:22px;margin-bottom:7px;color:#8792a6}.error{display:none;margin:0 0 16px;padding:10px 13px;border:1px solid #ef738044;border-radius:8px;background:#ef738012;color:#f49ca7;font-size:12px}.footer{border-top:1px solid #ffffff10;padding:18px 0 28px;color:#737e91;font-size:10px;display:flex;justify-content:space-between}.footer strong{color:#aab2c2}.loading{opacity:.55}.hide{display:none!important}
+    @media(max-width:820px){.content{grid-template-columns:1fr}.cards{gap:10px}.card{padding:15px}.links{gap:14px}.shell{padding:0 18px}}
+    @media(max-width:590px){.shell{padding:0 14px}.topbar{height:65px}.links{display:none}.hero{padding:30px 0 18px;align-items:flex-start;flex-direction:column}.hero h1{font-size:26px}.cards{grid-template-columns:1fr 1fr}.card:last-child{display:none}.tablehead,.playerrow{grid-template-columns:minmax(125px,1.2fr) minmax(75px,.8fr) 68px;padding-left:12px;padding-right:12px;gap:8px}.tablehead{font-size:8px}.playerrow{min-height:56px}.game{font-size:10px}.joined{font-size:10px}.footer{gap:8px;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="shell topinner"><a class="brand" href="#"><span class="mark">B</span><span>biur<span style="color:var(--accent)">.</span>online<small>PLAYER ACTIVITY</small></span></a><nav class="links"><a class="active" href="#players">Players</a><a href="#activity">Join activity</a><a href="https://biur.online" target="_blank" rel="noreferrer">biur.online ↗</a></nav><div class="right"><span class="live"><i class="dot"></i> LIVE</span><span class="avatar">B</span></div></div></header>
+  <main class="shell">
+    <section class="hero"><div><div class="eyebrow">Community dashboard</div><h1>Player activity</h1><p>See who’s online and keep up with the latest arrivals.</p></div><div class="updated"><i class="dot"></i><span id="updated">Connecting…</span></div></section>
+    <div id="error" class="error" role="status"></div>
+    <section class="cards" aria-label="Player statistics">
+      <article class="card"><div class="cardhead"><span>Players online</span><span class="cardicon">◉</span></div><div class="value" id="onlineCount">—</div><div class="sub">Currently in a tracked server</div></article>
+      <article class="card"><div class="cardhead"><span>Joins today</span><span class="cardicon">↗</span></div><div class="value" id="joinCount">—</div><div class="sub">Since midnight UTC</div></article>
+      <article class="card"><div class="cardhead"><span>Latest activity</span><span class="cardicon">⌁</span></div><div class="value" id="latestTime" style="font-size:20px;margin-top:14px">—</div><div class="sub">Most recent player event</div></article>
+    </section>
+    <section class="content">
+      <article class="box" id="players"><div class="boxtop"><div><div class="boxtitle">Players online</div><div class="boxdesc">Players currently in a tracked server</div></div><span class="count" id="onlineBadge">0 online</span></div>
+        <div class="searchwrap"><input class="search" id="search" type="search" placeholder="⌕  Search players or games…" aria-label="Search players or games"></div>
+        <div class="tablehead"><span>Player</span><span>Game</span><span>Joined</span></div><div id="onlineRows"><div class="empty"><div class="emptyicon">◉</div>Waiting for player activity…</div></div>
+      </article>
+      <aside class="box" id="activity"><div class="boxtop"><div><div class="boxtitle">Recent joins</div><div class="boxdesc">The latest players to arrive</div></div><span class="count">LIVE FEED</span></div><div class="feed" id="feed"><div class="empty"><div class="emptyicon">⌁</div>No joins have been recorded yet.</div></div></aside>
+    </section>
+    <footer class="footer"><span><strong>biur.online</strong> · Community player activity</span><span>Refreshes automatically · All times shown in your timezone</span></footer>
+  </main>
+<script>
+  const $ = (id) => document.getElementById(id);
+  let snapshot = { online: [], recent: [] };
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const date = (value) => { const d = new Date(value); return Number.isNaN(d.getTime()) ? null : d; };
+  const ago = (value) => { const d = date(value); if (!d) return '—'; const m = Math.max(0, Math.floor((Date.now()-d.getTime())/60000)); return m < 1 ? 'Just now' : m < 60 ? `${m}m ago` : m < 1440 ? `${Math.floor(m/60)}h ago` : `${Math.floor(m/1440)}d ago`; };
+  function render() {
+    const online = snapshot.online || [], recent = snapshot.recent || [];
+    $('onlineCount').textContent = online.length.toLocaleString(); $('onlineBadge').textContent = `${online.length} online`;
+    const start = new Date(); start.setUTCHours(0,0,0,0);
+    $('joinCount').textContent = recent.filter(e => e.event === 'join' && date(e.created_at) >= start).length.toLocaleString();
+    $('latestTime').textContent = recent.length ? ago(recent[0].created_at) : '—';
+    const query = $('search').value.trim().toLowerCase();
+    const filtered = online.filter(p => `${p.player_name} ${p.game_name || ''} ${p.user_id}`.toLowerCase().includes(query));
+    $('onlineRows').innerHTML = filtered.length ? filtered.map(p => `<div class="playerrow"><div class="player"><span class="portrait">${esc((p.player_name||'?').slice(0,1).toUpperCase())}</span><span style="min-width:0"><span class="pname">${esc(p.player_name)}</span><span class="uid" style="display:block">ID ${esc(p.user_id)}</span></span></div><span class="game">${esc(p.game_name || 'biur.online')}</span><span class="joined"><span class="status"><i class="dot"></i>${esc(ago(p.joined_at))}</span></span></div>`).join('') : `<div class="empty"><div class="emptyicon">◉</div>${query ? 'No players match your search.' : 'No players online right now.'}</div>`;
+    const joins = recent.filter(e => e.event === 'join').slice(0,8);
+    $('feed').innerHTML = joins.length ? joins.map(e => `<div class="feeditem"><span class="feedicon">↗</span><div class="feedcopy"><strong>${esc(e.player_name)} joined</strong><p>${esc(e.game_name || 'biur.online')} · ID ${esc(e.user_id)}</p></div><span class="feedtime">${esc(ago(e.created_at))}</span></div>`).join('') : '<div class="empty"><div class="emptyicon">⌁</div>No joins have been recorded yet.</div>';
+  }
+  async function refresh() {
+    try {
+      const response = await fetch('/api/players', { headers: { Accept: 'application/json' }, cache: 'no-store' });
+      if (!response.ok) throw new Error(response.status === 503 ? 'Player tracking is not configured yet. See the setup steps in the project README.' : `Could not load player activity (HTTP ${response.status}).`);
+      snapshot = await response.json(); $('error').style.display = 'none'; $('updated').textContent = `Updated ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}`; render();
+    } catch (error) { $('error').textContent = error.message || 'Could not connect to player activity.'; $('error').style.display = 'block'; $('updated').textContent = 'Connection issue'; }
+  }
+  $('search').addEventListener('input', render); refresh(); setInterval(refresh, 15000);
+</script>
+</body>
+</html>
