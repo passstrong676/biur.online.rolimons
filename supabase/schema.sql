@@ -5,6 +5,8 @@ create table if not exists public.player_events (
   player_name text not null,
   game_name text not null default 'biur.online',
   event text not null check (event in ('join', 'leave')),
+  rap bigint check (rap is null or rap >= 0),
+  value bigint check (value is null or value >= 0),
   created_at timestamptz not null default now()
 );
 
@@ -14,8 +16,16 @@ create table if not exists public.player_sessions (
   user_id text primary key,
   player_name text not null,
   game_name text not null default 'biur.online',
+  rap bigint check (rap is null or rap >= 0),
+  value bigint check (value is null or value >= 0),
   joined_at timestamptz not null default now()
 );
+
+-- Upgrade tables created with the earlier schema as well.
+alter table public.player_events add column if not exists rap bigint check (rap is null or rap >= 0);
+alter table public.player_events add column if not exists value bigint check (value is null or value >= 0);
+alter table public.player_sessions add column if not exists rap bigint check (rap is null or rap >= 0);
+alter table public.player_sessions add column if not exists value bigint check (value is null or value >= 0);
 
 -- Keep both tables private: the API reads/writes them using its server-only
 -- Supabase service role key. Never expose that key in browser code.

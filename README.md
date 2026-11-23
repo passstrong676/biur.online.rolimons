@@ -1,27 +1,27 @@
 # Biur Activity
 
-A small, original player-activity dashboard for biur.online. It displays the players reported by your game server, a live online roster, and recent join activity. The visual style is inspired by familiar Roblox community dashboards, without copying Rolimon's branding or assets.
+An original player and inventory dashboard for biur.online, with a live online roster, recent joins, and reported player RAP and value. It uses a familiar community-dashboard layout, but not Rolimon's branding or assets.
 
-## Connect player join/leave events
+## Connect player and inventory data
 
-This starter uses a Vercel serverless API and Supabase for persistent storage. The UI refreshes every 15 seconds. It does **not** invent or scrape player data: a game/server integration must send join and leave events to the API.
+This project uses a Vercel serverless API and Supabase. It does not scrape Roblox, discover biur.online players by itself, or invent inventory totals. Your trusted game-server integration must submit each player's data. Roblox does not provide this project with arbitrary players' private inventory contents; only report RAP/value from a source your integration is authorized to access.
 
-1. Create a Supabase project and run [`supabase/schema.sql`](supabase/schema.sql) in its SQL Editor.
-2. In Vercel, add these environment variables and redeploy:
-   - `SUPABASE_URL` — your project URL.
-   - `SUPABASE_SERVICE_ROLE_KEY` — service-role key; keep this server-only.
-   - `INGEST_SECRET` — a long, random secret shared only with your trusted game-server integration.
-3. Deploy this repository to Vercel with the repository root as the project root. Vercel serves `index.html` and the `api/players.js` function.
-4. From a trusted server, send `POST https://<your-domain>/api/players` with the `x-ingest-key` header and a JSON body such as:
+1. Run [`supabase/schema.sql`](supabase/schema.sql) in your Supabase SQL Editor. It also adds RAP/value columns to an existing installation.
+2. Add these Vercel environment variables and redeploy:
+   - `SUPABASE_URL` — your Supabase project URL.
+   - `SUPABASE_SERVICE_ROLE_KEY` — service-role key; keep server-only.
+   - `INGEST_SECRET` — a long, random secret known only to your trusted integration.
+3. Deploy the repository root to Vercel. The page refreshes its dashboard every 15 seconds.
+4. From a trusted server, send `POST https://<your-domain>/api/players` with the `x-ingest-key` header and a JSON body like:
 
    ```json
-   {"event":"join","userId":"123456","playerName":"ExamplePlayer","gameName":"Biur"}
+   {"event":"join","userId":"123456","playerName":"ExamplePlayer","gameName":"Biur","rap":1200,"value":1500}
    ```
 
-   Send the same payload with `"event":"leave"` when that player leaves. `GET /api/players` returns the online roster and the latest 200 join/leave events. The dashboard's joins-today statistic is based on those recent events.
+   `rap` and `value` are non-negative integer totals from your trusted data source, in Robux/Roblox value units; use `null` when unavailable. Send a corresponding `"event":"leave"` when the player leaves, including fresh RAP/value if available. `GET /api/players` returns the online players and latest 200 join/leave events.
 
-For Roblox, use a **server-side** `Players.PlayerAdded` / `Players.PlayerRemoving` integration with `HttpService` enabled; never send the ingest secret in a LocalScript or browser. Store that secret only in trusted server code and rotate it if it is exposed. Use the actual `Player.UserId` and `Player.Name`. The dashboard cannot discover Roblox joins on its own; configure the integration for each game/server you want included.
+For Roblox, use a server-side `Players.PlayerAdded` / `Players.PlayerRemoving` integration with `HttpService` enabled. Never put the ingest secret in a LocalScript or browser. Store it only in trusted server code and rotate it if exposed. Use the actual `Player.UserId` and `Player.Name`. The Roblox integration must obtain inventory RAP/value from a permitted and reliable source; this app does not claim to fetch or verify that information automatically. Add integrations only for games/servers you control or have permission to monitor.
 
 ## Local development
 
-Deploy to Vercel or run the project with Vercel's local development tooling so `/api/players` is available. The dashboard shows an empty state until Supabase is configured and events are ingested.
+Use Vercel's local development tooling so `/api/players` is available. The dashboard shows an empty state until Supabase is configured and real player events are ingested.
